@@ -18,23 +18,7 @@ namespace JustMyResumeApi.Controllers
 
         public UserController(JustMyResumeApi.Data.JustMyResumeContext context)
         {
-            //_context = context;
-
-            //if (_context.Users.Count() == 0)
-            //{
-            //    _context.Users.Add(new User
-            //    {
-            //        LastName = "Woodward",
-            //        FirstName = "Thomas",
-            //        StreetAddress = "809 E Bellville St.",
-            //        City = "Marion",
-            //        State = "KY",
-            //        ZipCode = "42064",
-            //        Phone = "615.517.5194",
-            //        Email = "tom_woodward7@hotmail.com"
-            //    });
-            //    _context.SaveChanges();
-            //}
+            _context = context;
         }
 
         [HttpGet]
