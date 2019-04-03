@@ -12,11 +12,13 @@ namespace JustMyResumeApi.Models
         [ForeignKey("User")]
         public long UserId { get; set; }
         public User User { get; set; }
+
         [ForeignKey("SkillCategory")]
-        public long SkillCategoryId;
-        public SkillCategory SkillCategory;
+        public long SkillCategoryId { get; set; }
+        public SkillCategory SkillCategory { get; set; }
 
         public string Name { get; set; }
         public string SkillLevel { get; set; }
+        public int SortOrder { get; set; }
     }
 }

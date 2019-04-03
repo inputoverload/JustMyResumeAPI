@@ -31,7 +31,7 @@ namespace JustMyResumeApi.Controllers
         [HttpGet("Users/{id}")]
         public async Task<ActionResult<IEnumerable<TechSkill>>> GetUserTechSkills(long id)
         {
-            return await _context.TechSkills.Where(item => item.UserId == id).ToListAsync();
+            return await _context.TechSkills.Where(item => item.UserId == id).OrderBy(item => item.SortOrder).ToListAsync();
         }
 
         // GET: api/TechSkills/5

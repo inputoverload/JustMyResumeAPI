@@ -18,5 +18,6 @@ namespace JustMyResumeApi.Models
 
         public string DemoUrl { get; set; }
         public string GitHubUrl { get; set; }
+        public int SortOrder { get; set; }
     }
 }

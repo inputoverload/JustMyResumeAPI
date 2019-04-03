@@ -18,5 +18,6 @@ namespace JustMyResumeApi.Models
 
         public string Description { get; set; }
         public string Degree { get; set; }
+        public int SortOrder { get; set; }
     }
 }

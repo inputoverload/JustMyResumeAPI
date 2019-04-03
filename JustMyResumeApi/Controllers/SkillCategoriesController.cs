@@ -25,7 +25,7 @@ namespace JustMyResumeApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SkillCategory>>> GetSkillCategories()
         {
-            return await _context.SkillCategories.ToListAsync();
+            return await _context.SkillCategories.OrderBy(item => item.SortOrder).ToListAsync();
         }
 
         // GET: api/SkillCategories/5
