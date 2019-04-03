@@ -10,13 +10,13 @@ using JustMyResumeApi.Models;
 
 namespace JustMyResumeApi.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly JustMyResumeApi.Data.JustMyResumeContext _context;
 
-        public UserController(JustMyResumeApi.Data.JustMyResumeContext context)
+        public UsersController(JustMyResumeApi.Data.JustMyResumeContext context)
         {
             _context = context;
         }
