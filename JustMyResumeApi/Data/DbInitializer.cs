@@ -67,20 +67,20 @@ namespace JustMyResumeApi.Data
               new TechSkill {UserId = userId, SkillCategoryId = lang, Name = "CSS", SkillLevel = "Proficient", SortOrder = 7},
               new TechSkill {UserId = userId, SkillCategoryId = lang, Name = "TypeScript", SkillLevel = "Entry", SortOrder = 8},
                               
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET", SkillLevel = "Expert", SortOrder = 9},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET MVC", SkillLevel = "Proficient", SortOrder = 10},
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Core ASP.NET", SkillLevel = "Proficient", SortOrder = 11},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Core 2.2", SkillLevel = "Proficient", SortOrder = 10},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Web API", SkillLevel = "Proficient", SortOrder = 10},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Windows Forms", SkillLevel = "Expert", SortOrder = 12},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Web Forms", SkillLevel = "Expert", SortOrder = 12},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Angular 7", SkillLevel = "Proficient", SortOrder = 13},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Angular Material", SkillLevel = "Proficient", SortOrder = 13},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "AJAX", SkillLevel = "Proficient", SortOrder = 14},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "JQuery", SkillLevel = "Proficient", SortOrder = 15},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Entity Framework", SkillLevel = "Proficient", SortOrder = 16},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Entity Framework Core", SkillLevel = "Proficient", SortOrder = 16},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "REST Services", SkillLevel = "Expert", SortOrder = 17},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Android", SkillLevel = "Entry", SortOrder = 18},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "LINQ", SkillLevel = "Proficient", SortOrder = 19},
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "WebAPI", SkillLevel = "Proficient", SortOrder = 20},
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Angular", SkillLevel = "Entry", SortOrder = 21},
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Angular Material", SkillLevel = "Entry", SortOrder = 22},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "JSON", SkillLevel = "Proficient", SortOrder = 23},
 
               new TechSkill {UserId = userId, SkillCategoryId = db, Name = "Microsoft SQL Server", SkillLevel = "Expert", SortOrder = 24},
@@ -105,7 +105,7 @@ namespace JustMyResumeApi.Data
             context.SaveChanges();
 
             var projects = new Project[] {
-                new Project { UserId = userId, Name = "Dynamic Resume", Description = "A dynamically built resume application capable of hosting multiple resumes. The front end is built using Angular 7 and Angular 7 Material. The business object and data service tier is built using C# for .Net Core 2.2. The business and data tiers employe WepAPI and Entity Framework Core. The database is hosted in Microsoft SQL Server.", DemoUrl = "https://www.justmyresume.com", GitHubUrl = "https://somegithub.com", SortOrder = 1 }
+                new Project { UserId = userId, Name = "Dynamic Resume", Description = "A dynamically built resume application capable of hosting multiple resumes. The front end is built using Angular 7 and Angular 7 Material. The business object and data service tier is built using C# for .Net Core 2.2. The business and data tiers employ Wep API and Entity Framework Core. All content is stored in a database hosted in Microsoft SQL Server.", DemoUrl = "https://www.justmyresume.com", GitHubUrl = "https://somegithub.com", SortOrder = 1 }
             };
             foreach (var item in projects)
             {
