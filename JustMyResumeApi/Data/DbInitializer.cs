@@ -105,7 +105,7 @@ namespace JustMyResumeApi.Data
             context.SaveChanges();
 
             var projects = new Project[] {
-                new Project { UserId = userId, Name = "Dynamic Resume", Description = "A dynamically built resume application capable of hosting multiple resumes. The front end is built using Angular 7 and Angular 7 Material. The business object and data service tier is built using C# for .Net Core 2.2. The business and data tiers employ Wep API and Entity Framework Core. All content is stored in a database hosted in Microsoft SQL Server.", DemoUrl = "https://www.justmyresume.com", GitHubUrl = "https://somegithub.com", SortOrder = 1 }
+                new Project { UserId = userId, Name = "Dynamic Resume", Description = "A dynamically built resume application capable of hosting multiple resumes. The front end is built using Angular 7 and Angular 7 Material. The business object and data service tier is built using C# for .Net Core 2.2. The business and data tiers employ Wep API and Entity Framework Core. All content is stored in a database hosted in Microsoft SQL Server and accessed asynchronously for scalability.", DemoUrl = "https://www.justmyresume.com", GitHubUrl = "https://somegithub.com", SortOrder = 1 }
             };
             foreach (var item in projects)
             {
