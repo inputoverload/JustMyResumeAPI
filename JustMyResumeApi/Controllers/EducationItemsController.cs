@@ -36,6 +36,7 @@ namespace JustMyResumeApi.Controllers
 
         // GET: api/EducationItems/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EducationItem>> GetEducationItem(long id)
         {
             var educationItem = await _context.EducationItems.FindAsync(id);
@@ -50,6 +51,9 @@ namespace JustMyResumeApi.Controllers
 
         // PUT: api/EducationItems/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutEducationItem(long id, EducationItem educationItem)
         {
             if (id != educationItem.Id)
@@ -80,6 +84,7 @@ namespace JustMyResumeApi.Controllers
 
         // POST: api/EducationItems
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<EducationItem>> PostEducationItem(EducationItem educationItem)
         {
             _context.EducationItems.Add(educationItem);
@@ -90,6 +95,7 @@ namespace JustMyResumeApi.Controllers
 
         // DELETE: api/EducationItems/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EducationItem>> DeleteEducationItem(long id)
         {
             var educationItem = await _context.EducationItems.FindAsync(id);

@@ -30,6 +30,7 @@ namespace JustMyResumeApi.Controllers
 
         // GET: api/SkillCategories/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillCategory>> GetSkillCategory(long id)
         {
             var skillCategory = await _context.SkillCategories.FindAsync(id);
@@ -44,6 +45,9 @@ namespace JustMyResumeApi.Controllers
 
         // PUT: api/SkillCategories/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutSkillCategory(long id, SkillCategory skillCategory)
         {
             if (id != skillCategory.Id)
@@ -74,6 +78,7 @@ namespace JustMyResumeApi.Controllers
 
         // POST: api/SkillCategories
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<SkillCategory>> PostSkillCategory(SkillCategory skillCategory)
         {
             _context.SkillCategories.Add(skillCategory);
@@ -84,6 +89,7 @@ namespace JustMyResumeApi.Controllers
 
         // DELETE: api/SkillCategories/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillCategory>> DeleteSkillCategory(long id)
         {
             var skillCategory = await _context.SkillCategories.FindAsync(id);

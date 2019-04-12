@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JustMyResumeApi.Models;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,6 +29,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<User>> GetUser(long id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -41,6 +43,8 @@ namespace JustMyResumeApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<User>> AddUser(User user)
         {
             _context.Users.Add(user);
@@ -50,6 +54,8 @@ namespace JustMyResumeApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
@@ -65,6 +71,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteUser(long id)
         {
             User user = await _context.Users.FindAsync(id);

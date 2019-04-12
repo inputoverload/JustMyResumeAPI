@@ -36,6 +36,7 @@ namespace JustMyResumeApi.Controllers
 
         // GET: api/TechSkills/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TechSkill>> GetTechSkill(long id)
         {
             var techSkill = await _context.TechSkills.FindAsync(id);
@@ -50,6 +51,9 @@ namespace JustMyResumeApi.Controllers
 
         // PUT: api/TechSkills/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutTechSkill(long id, TechSkill techSkill)
         {
             if (id != techSkill.Id)
@@ -80,6 +84,7 @@ namespace JustMyResumeApi.Controllers
 
         // POST: api/TechSkills
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<TechSkill>> PostTechSkill(TechSkill techSkill)
         {
             _context.TechSkills.Add(techSkill);
@@ -90,6 +95,7 @@ namespace JustMyResumeApi.Controllers
 
         // DELETE: api/TechSkills/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TechSkill>> DeleteTechSkill(long id)
         {
             var techSkill = await _context.TechSkills.FindAsync(id);

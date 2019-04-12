@@ -36,6 +36,7 @@ namespace JustMyResumeApi.Controllers
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Job>> GetJob(long id)
         {
             var job = await _context.Jobs.FindAsync(id);
@@ -50,6 +51,9 @@ namespace JustMyResumeApi.Controllers
 
         // PUT: api/Jobs/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutJob(long id, Job job)
         {
             if (id != job.Id)
@@ -80,6 +84,7 @@ namespace JustMyResumeApi.Controllers
 
         // POST: api/Jobs
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
             _context.Jobs.Add(job);
@@ -90,6 +95,7 @@ namespace JustMyResumeApi.Controllers
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Job>> DeleteJob(long id)
         {
             var job = await _context.Jobs.FindAsync(id);

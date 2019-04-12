@@ -36,6 +36,7 @@ namespace JustMyResumeApi.Controllers
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Project>> GetProject(long id)
         {
             var project = await _context.Projects.FindAsync(id);
@@ -50,6 +51,9 @@ namespace JustMyResumeApi.Controllers
 
         // PUT: api/Projects/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutProject(long id, Project project)
         {
             if (id != project.Id)
@@ -80,6 +84,7 @@ namespace JustMyResumeApi.Controllers
 
         // POST: api/Projects
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Project>> PostProject(Project project)
         {
             _context.Projects.Add(project);
@@ -90,6 +95,7 @@ namespace JustMyResumeApi.Controllers
 
         // DELETE: api/Projects/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Project>> DeleteProject(long id)
         {
             var project = await _context.Projects.FindAsync(id);
