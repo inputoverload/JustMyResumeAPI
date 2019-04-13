@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using JustMyResumeApi.Models;
 using Microsoft.AspNetCore.Http;
 using JustMyResumeApi.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace JustMyResumeApi
 {
@@ -34,7 +37,23 @@ namespace JustMyResumeApi
                     .AllowAnyHeader();
                 });
             });
-            // services.AddDbContext<JustMyResumeContext>(opt => opt.UseInMemoryDatabase("Todolist"));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true, 
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = "http://localhost:5000",
+                        ValidAudience = "http://localhost:5000",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey))
+                    };
+                });
+
             services.AddDbContext<JustMyResumeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -52,6 +71,7 @@ namespace JustMyResumeApi
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();

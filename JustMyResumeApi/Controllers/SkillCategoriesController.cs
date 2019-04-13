@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JustMyResumeApi.Data;
 using JustMyResumeApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JustMyResumeApi.Controllers
 {
@@ -22,14 +23,14 @@ namespace JustMyResumeApi.Controllers
         }
 
         // GET: api/SkillCategories
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<SkillCategory>>> GetSkillCategories()
         {
             return await _context.SkillCategories.OrderBy(item => item.SortOrder).ToListAsync();
         }
 
         // GET: api/SkillCategories/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillCategory>> GetSkillCategory(long id)
         {
@@ -44,7 +45,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // PUT: api/SkillCategories/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -77,7 +78,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // POST: api/SkillCategories
-        [HttpPost]
+        [HttpPost, Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<SkillCategory>> PostSkillCategory(SkillCategory skillCategory)
         {
@@ -88,7 +89,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // DELETE: api/SkillCategories/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillCategory>> DeleteSkillCategory(long id)
         {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JustMyResumeApi.Data;
 using JustMyResumeApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JustMyResumeApi.Controllers
 {
@@ -22,20 +23,20 @@ namespace JustMyResumeApi.Controllers
         }
 
         // GET: api/EducationItems
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<EducationItem>>> GetEducationItems()
         {
             return await _context.EducationItems.ToListAsync();
         }
 
-        [HttpGet("Users/{id}")]
+        [HttpGet("Users/{id}"), Authorize]
         public async Task<ActionResult<IEnumerable<EducationItem>>> GetUserEducationItems(long id)
         {
             return await _context.EducationItems.Where(item => item.UserId == id).OrderBy(item => item.SortOrder).ToListAsync();
         }
 
         // GET: api/EducationItems/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EducationItem>> GetEducationItem(long id)
         {
@@ -50,7 +51,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // PUT: api/EducationItems/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -83,7 +84,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // POST: api/EducationItems
-        [HttpPost]
+        [HttpPost, Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<EducationItem>> PostEducationItem(EducationItem educationItem)
         {
@@ -94,7 +95,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // DELETE: api/EducationItems/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EducationItem>> DeleteEducationItem(long id)
         {

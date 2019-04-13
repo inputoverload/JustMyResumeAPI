@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JustMyResumeApi.Data;
 using JustMyResumeApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JustMyResumeApi.Controllers
 {
@@ -22,20 +23,20 @@ namespace JustMyResumeApi.Controllers
         }
 
         // GET: api/TechSkills
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<TechSkill>>> GetTechSkills()
         {
             return await _context.TechSkills.ToListAsync();
         }
 
-        [HttpGet("Users/{id}")]
+        [HttpGet("Users/{id}"), Authorize]
         public async Task<ActionResult<IEnumerable<TechSkill>>> GetUserTechSkills(long id)
         {
             return await _context.TechSkills.Where(item => item.UserId == id).OrderBy(item => item.SortOrder).ToListAsync();
         }
 
         // GET: api/TechSkills/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TechSkill>> GetTechSkill(long id)
         {
@@ -50,7 +51,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // PUT: api/TechSkills/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -83,7 +84,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // POST: api/TechSkills
-        [HttpPost]
+        [HttpPost, Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<TechSkill>> PostTechSkill(TechSkill techSkill)
         {
@@ -94,7 +95,7 @@ namespace JustMyResumeApi.Controllers
         }
 
         // DELETE: api/TechSkills/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TechSkill>> DeleteTechSkill(long id)
         {
