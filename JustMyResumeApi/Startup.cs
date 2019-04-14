@@ -32,7 +32,8 @@ namespace JustMyResumeApi
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200", "http://localhost:44331")
+                    builder
+                    .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
                 });
@@ -48,8 +49,8 @@ namespace JustMyResumeApi
                         ValidateLifetime = true, 
                         ValidateIssuerSigningKey = true,
 
-                        ValidIssuer = "http://localhost:5000",
-                        ValidAudience = "http://localhost:5000",
+                        ValidIssuer = "http://localhost:44396",
+                        ValidAudience = "http://localhost:4200",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey))
                     };
                 });
@@ -61,6 +62,15 @@ namespace JustMyResumeApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if (ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

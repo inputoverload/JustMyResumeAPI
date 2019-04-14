@@ -19,32 +19,37 @@ namespace JustMyResumeApi.Controllers
         [HttpPost, Route("login")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Login([FromBody]LoginModel user)
+        public async Task<IActionResult> Login([FromBody]LoginModel user)
         {
             if(user == null)
             {
-                return BadRequest("Invalid client request.");
+                return BadRequest();
             }
-
-            if(user.UserName == "johndoe" && user.Password =="def@123")
-            {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            try
+            { 
+                if(user.UserName == "johndoe" && user.Password =="def@123")
+                {
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey));
+                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 
-                var tokeOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:5000",
-                    audience: "http://localhost:5000",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signinCredentials
-                );
+                    var tokeOptions = new JwtSecurityToken(
+                        issuer: "http://localhost:44396",
+                        audience: "http://localhost:4200",
+                        claims: new List<Claim>(),
+                        expires: DateTime.Now.AddMinutes(5),
+                        signingCredentials: signinCredentials
+                    );
 
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = tokenString });
-            } else
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                    return CreatedAtAction("Login", new { token = tokenString });
+                } else
+                {
+                    return Unauthorized();
+                }
+            } catch(Exception exc)
             {
-                return Unauthorized();
-            }
+                return BadRequest(exc.Message);
+            } 
         }
     }
 }
