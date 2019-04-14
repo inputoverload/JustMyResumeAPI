@@ -69,7 +69,7 @@ namespace JustMyResumeApi.Data
                               
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET MVC", SkillLevel = "Proficient", SortOrder = 10},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Core 2.2", SkillLevel = "Proficient", SortOrder = 10},
-              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Web API", SkillLevel = "Proficient", SortOrder = 10},
+              new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Core Web API", SkillLevel = "Proficient", SortOrder = 10},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Windows Forms", SkillLevel = "Expert", SortOrder = 12},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "ASP.NET Web Forms", SkillLevel = "Expert", SortOrder = 12},
               new TechSkill {UserId = userId, SkillCategoryId = api, Name = "Angular 7", SkillLevel = "Proficient", SortOrder = 13},
