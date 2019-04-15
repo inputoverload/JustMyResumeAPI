@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using JustMyResumeApi.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace JustMyResumeApi.Data
 {
@@ -9,6 +11,17 @@ namespace JustMyResumeApi.Data
             base(options)
         {
 
+        }
+
+        public JustMyResumeContext() :
+            base()
+        {
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,5 +35,6 @@ namespace JustMyResumeApi.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
         public DbSet<TechSkill> TechSkills { get; set; }
+        public DbSet<LoginModel> LoginModels { get; set; }
     }
 }

@@ -55,7 +55,7 @@ namespace JustMyResumeApi
                     };
                 });
 
-            services.AddDbContext<JustMyResumeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<JustMyResumeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("JustMyResume")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

@@ -112,6 +112,17 @@ namespace JustMyResumeApi.Data
                 context.Projects.Add(item);
             }
             context.SaveChanges();
+
+            context.LoginModels.Add(new LoginModel
+            {
+                UserName = "johndoe",
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "tom_woodward7@hotmail.com",
+                IsAdmin = true,
+                Password = "def@123"
+            });
+            context.SaveChanges();
         }
     }
 }
