@@ -122,7 +122,7 @@ namespace JustMyResumeApi.Data
                 LastName = "Doe",
                 Email = "tom_woodward7@hotmail.com",
                 IsAdmin = true,
-                Password = "def@123"
+                Password = DBSecurity.hashPassword("def@123")
             });
             context.SaveChanges();
         }

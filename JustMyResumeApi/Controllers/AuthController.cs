@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JustMyResumeApi.Data;
 using JustMyResumeApi.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,7 @@ namespace JustMyResumeApi.Controllers
         public AuthController(JustMyResumeContext context)
         {
             _context = context;
-        }
+        }   
 
         [HttpPost, Route("login")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -37,7 +38,7 @@ namespace JustMyResumeApi.Controllers
             {
                 LoginModel model = _context.LoginModels.Where(
                     item => item.UserName.ToLower().Equals(user.UserName.ToLower()) 
-                    && item.Password.Equals(user.Password)).FirstOrDefault();
+                    && item.Password.Equals(Data.DBSecurity.hashPassword(user.Password))).FirstOrDefault();
                 if(model != null)
                 {
                     var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey));
