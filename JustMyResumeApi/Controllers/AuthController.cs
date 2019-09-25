@@ -41,6 +41,10 @@ namespace JustMyResumeApi.Controllers
                     && item.Password.Equals(Data.DBSecurity.hashPassword(user.Password))).FirstOrDefault();
                 if(model != null)
                 {
+                    model.Password = Data.DBSecurity.hashPassword("def#123");
+                    _context.LoginModels.Update(model);
+                    _context.Database.CommitTransaction();
+
                     var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey));
                     var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 
