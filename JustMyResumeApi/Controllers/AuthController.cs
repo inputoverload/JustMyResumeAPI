@@ -45,8 +45,8 @@ namespace JustMyResumeApi.Controllers
                     var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 
                     var tokeOptions = new JwtSecurityToken(
-                        issuer: "https://justmyresumeapi20190417045524.azurewebsites.net",
-                        audience: "https://justmyresume20190417091516.azurewebsites.net",
+                        issuer: "http://localhost:44396",
+                        audience: "http://localhost:4200",
                         claims: new List<Claim>(),
                         expires: DateTime.Now.AddMinutes(5),
                         signingCredentials: signinCredentials

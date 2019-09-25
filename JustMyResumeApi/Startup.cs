@@ -49,13 +49,13 @@ namespace JustMyResumeApi
                         ValidateLifetime = true, 
                         ValidateIssuerSigningKey = true,
 
-                        ValidIssuer = "https://justmyresumeapi20190417045524.azurewebsites.net",
-                        ValidAudience = "https://justmyresume20190417091516.azurewebsites.net",
+                        ValidIssuer = "http://localhost:44396",
+                        ValidAudience = "http://localhost:4200",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JustMyResumeApi.Models.LoginModel.EncodingKey))
                     };
                 });
 
-            services.AddDbContext<JustMyResumeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<JustMyResumeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("JustMyResume")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
